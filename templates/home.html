@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicles</title>
+</head>
+<body>
+    <h1>Vehicles</h1>
+    <a href="{{ url_for('create_vehicles') }}">
+            <button>Add Vehicles</button><br><br>
+    </a>
+        {% for vehicle in vehicles %}
+            <div>
+                <label>ID: {{ vehicle.id }}</label><br>
+                <label>Brand: {{ vehicle.brand }}</label><br>
+                <label>Model: {{ vehicle.model }}</label><br>
+                {% if vehicle.type == 'car' %}
+                    <label>Number of Doors: {{ vehicle.num_doors }}</label><br>
+                {% elif vehicle.type == 'motorcycle' %}
+                    <label>Has Sidecar: {{ vehicle.has_sidecar }}</label><br>
+                {% endif %}
+                <label>Type: {{ vehicle.type }}</label><br>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <form action="{{ url_for('update_vehicles', vehicle_id=vehicle.id) }}">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="{{ url_for('delete_vehicles', vehicle_id=vehicle.id) }}" method="post" style="margin-left: 10px;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            <br> <br>
+        {% endfor %}
+</body>
+</html>

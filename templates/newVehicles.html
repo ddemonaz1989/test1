@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Vehicle</title>
+</head>
+<body>
+    <h1>Add a New Vehicle</h1>
+    <form method="POST" action="{{ url_for('create_vehicles') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.brand.label }}: {{ form.brand(size=32) }}<br>
+            {% for error in form.brand.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.model.label }}: {{ form.model(size=32) }}<br>
+            {% for error in form.model.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.vehicle_type.label }}: {{ form.vehicle_type() }}<br>
+            {% for error in form.vehicle_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div id="car_fields">
+            {{ form.num_doors.label }}: {{ form.num_doors(size=3) }}<br>
+            {% for error in form.num_doors.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div id="motorcycle_fields">
+            {{ form.has_sidecar.label }}: {{ form.has_sidecar() }}<br>
+            {% for error in form.has_sidecar.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            <input type="submit" value="Add Vehicle">
+        </div>
+    </form>
+</body>
+</html>
