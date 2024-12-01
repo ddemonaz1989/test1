@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Vehicle</title>
+</head>
+<body>
+    <h1>Edit Vehicle</h1>
+    <form method="POST" action="{{ url_for('update_vehicles', vehicle_id=vehicle.id) }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.brand.label }}
+            <input type="text" name="brand" value="{{ vehicle.brand }}"><br>
+            {% for error in form.brand.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.model.label }}
+            <input type="text" name="model" value="{{ vehicle.model }}"><br>
+            {% for error in form.model.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.vehicle_type.label }}
+            <input type="text" name="vehicle_type" value="{{ vehicle.vehicle_type }}"><br>
+            {% for error in form.vehicle_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {% if vehicle.vehicle_type == 'car' %}
+                {{ form.num_doors.label }}
+                <input type="number" name="num_doors" value="{{ attr }}"><br>
+            {% elif vehicle.vehicle_type == 'motorcycle' %}
+                {{ form.has_sidecar.label }}
+                <input type="checkbox" name="has_sidecar" {% if attr %}checked{% endif %}><br>
+            {% endif %}
+        </div>
+        <div>
+            <input type="submit" value="Save Vehicle">
+        </div>
+    </form>
+</body>
+</html>
