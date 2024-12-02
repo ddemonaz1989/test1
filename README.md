@@ -8,7 +8,7 @@
 
    ```bash
    git clone https://github.com/ddemonaz1989/test1.git
-   cd <имя папки вашего репозитория>
+   cd test1
    ```
 
 2. **Создайте и активируйте виртуальное окружение:**
